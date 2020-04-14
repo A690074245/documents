@@ -133,7 +133,7 @@
                 <!--docker镜像相关的配置信息-->
                 <configuration>
                     <!--镜像名，这里用工程名-->
-                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}/${maven.build.timestamp}</imageName>
+                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}</imageName>
                     <!--TAG,这里用工程版本号-->
                     <imageTags>
                         <imageTag>${maven.build.timestamp}</imageTag>
