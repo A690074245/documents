@@ -16,8 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <docker.repository>registry.cn-shenzhen.aliyuncs.com/jacky_yang</docker.repository>
-        <docker.registry.name>zhaoyang</docker.registry.name>
+        <docker.repository>registry.cn-shenzhen.aliyuncs.com</docker.repository>
+        <docker.registry.name>jacky_yang/zhaoyang</docker.registry.name>
     </properties>
 
     <dependencies>
@@ -134,9 +134,9 @@
                     <!--镜像名，这里用工程名-->
                     <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
                     <!--TAG,这里用工程版本号-->
-                    <!--<imageTags>-->
-                        <!--<imageTag>${project.version}</imageTag>-->
-                    <!--</imageTags>-->
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
                     <!--镜像的FROM，使用java官方镜像-->
                     <baseImage>java:8u111-jdk</baseImage>
                     <!--该镜像的容器启动后，直接运行spring boot工程-->
@@ -150,7 +150,7 @@
                         </resource>
                     </resources>
                     <serverId>docker-aliyun</serverId>
-                    <registryUrl>${docker.repository}/${docker.registry.name}</registryUrl>
+                    <registryUrl>${docker.repository}</registryUrl>
                     <pushImage>true</pushImage>
                 </configuration>
             </plugin>
