@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <docker.repository>registry.cn-shenzhen.aliyuncs.com</docker.repository>
-        <docker.registry.name>jacky_yang/zhaoyang</docker.registry.name>
+        <docker.registry.name>jacky_yang/${project.artifactId}</docker.registry.name>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     </properties>
 
@@ -133,7 +133,7 @@
                 <!--docker镜像相关的配置信息-->
                 <configuration>
                     <!--镜像名，这里用工程名-->
-                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}</imageName>
+                    <imageName>${docker.repository}/${docker.registry.name}</imageName>
                     <!--TAG,这里用工程版本号-->
                     <imageTags>
                         <imageTag>${maven.build.timestamp}</imageTag>
