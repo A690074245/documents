@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.zy</groupId>
+    <artifactId>documents</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>documents</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <docker.repository>registry.cn-shenzhen.aliyuncs.com/jacky_yang</docker.repository>
+        <docker.registry.name>zhaoyang</docker.registry.name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.10</version>
+        </dependency>
+        <!--不加这个依赖，分页插件不生效 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.15</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--<plugin>-->
+                <!--<groupId>com.spotify</groupId>-->
+                <!--<artifactId>docker-maven-plugin</artifactId>-->
+                <!--<version>0.4.13</version>-->
+                <!--<configuration>-->
+                    <!--<forceTags>true</forceTags>    &lt;!&ndash;覆盖相同标签镜像&ndash;&gt;-->
+                    <!--<imageName>my/documents:0.0.1</imageName>  &lt;!&ndash;指定镜像名称 仓库/镜像名:标签&ndash;&gt;-->
+                    <!--<baseImage>java:8</baseImage>    &lt;!&ndash;指定基础镜像，相当于dockerFile中的FROM<image> &ndash;&gt;-->
+                    <!--<dockerHost>registry.cn-shenzhen.aliyuncs.com</dockerHost>  &lt;!&ndash; 指定仓库地址 &ndash;&gt;-->
+                    <!--<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint> &lt;!&ndash; 容器启动执行的命令，相当于dockerFile的ENTRYPOINT &ndash;&gt;-->
+                    <!--<resources>-->
+                        <!--<resource>                                             &lt;!&ndash; 指定资源文件 &ndash;&gt;-->
+                            <!--<targetPath>/</targetPath>                         &lt;!&ndash; 指定要复制的目录路径，这里是当前目录 &ndash;&gt;-->
+                            <!--<directory>${project.build.directory}</directory>  &lt;!&ndash; 指定要复制的根目录，这里是target目录 &ndash;&gt;-->
+                            <!--<include>${project.build.finalName}.jar</include>  &lt;!&ndash; 指定需要拷贝的文件，这里指最后生成的jar包 &ndash;&gt;-->
+                        <!--</resource>-->
+                    <!--</resources>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <!--docker镜像相关的配置信息-->
+                <configuration>
+                    <!--镜像名，这里用工程名-->
+                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
+                    <!--TAG,这里用工程版本号-->
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                    <!--镜像的FROM，使用java官方镜像-->
+                    <baseImage>java:8u111-jdk</baseImage>
+                    <!--该镜像的容器启动后，直接运行spring boot工程-->
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <!--构建镜像的配置信息-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <serverId>docker-aliyun</serverId>
+                    <registryUrl>${docker.repository}</registryUrl>
+                    <pushImage>true</pushImage>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
