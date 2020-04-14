@@ -150,7 +150,7 @@
                         </resource>
                     </resources>
                     <serverId>docker-aliyun</serverId>
-                    <registryUrl>${docker.repository}</registryUrl>
+                    <registryUrl>${docker.repository}/${docker.registry.name}</registryUrl>
                     <pushImage>true</pushImage>
                 </configuration>
             </plugin>
