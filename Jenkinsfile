@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh "mvn clean package -Dmaven.test.skip=true docker:build"
+                sh "mvn clean package -Dmaven.test.skip=true docker:build -DpushImage"
             }
         }
     }
