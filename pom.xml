@@ -18,6 +18,7 @@
         <java.version>1.8</java.version>
         <docker.repository>registry.cn-shenzhen.aliyuncs.com</docker.repository>
         <docker.registry.name>jacky_yang/zhaoyang</docker.registry.name>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
@@ -135,7 +136,7 @@
                     <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
                     <!--TAG,这里用工程版本号-->
                     <imageTags>
-                        <imageTag>${project.version}</imageTag>
+                        <imageTag>${project.version}/${maven.build.timestamp}</imageTag>
                     </imageTags>
                     <!--镜像的FROM，使用java官方镜像-->
                     <baseImage>java:8u111-jdk</baseImage>
