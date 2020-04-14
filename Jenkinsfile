@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh "docker login"
+                sh "winpty docker login"
                 sh "mvn clean package -Dmaven.test.skip=true docker:build"
             }
         }
