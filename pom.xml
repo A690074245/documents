@@ -136,7 +136,7 @@
                     <imageName>${docker.repository}/${docker.registry.name}</imageName>
                     <!--TAG,这里用工程版本号-->
                     <imageTags>
-                        <imageTag>${maven.build.timestamp}</imageTag>
+                        <imageTag>${project.artifactId}</imageTag>
                     </imageTags>
                     <!--镜像的FROM，使用java官方镜像-->
                     <baseImage>java:8u111-jdk</baseImage>
