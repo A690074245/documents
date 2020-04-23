@@ -24,3 +24,4 @@ spring:
 mybatis:
   type-aliases-package: com.zy.documents.domain
   mapper-locations: classpath:mapping/*.xml
+

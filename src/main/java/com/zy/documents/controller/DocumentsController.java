@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ public class DocumentsController {
     @Autowired
     private DocumentsService documentsService;
 
+
     @GetMapping("/company_user_list")
     @ApiOperation(value="查询公司或员工列表", notes="")
     @ApiImplicitParams({
@@ -37,5 +39,10 @@ public class DocumentsController {
                                          @RequestParam(name = "pageNum",defaultValue = "1")int pageNum,
                                          @RequestParam(name = "pageSize",defaultValue = "10")int pageSize){
             return documentsService.getCompanyUserList(queryValue,queryType,pageNum,pageSize);
+    }
+
+    @GetMapping("/test")
+    public BaseResp test(){
+        return new BaseResp("===成功==");
     }
 }
